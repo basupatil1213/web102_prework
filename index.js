@@ -199,3 +199,38 @@ firstGameContainer.appendChild(topGameElement);
 const runnerUpGameElement = document.createElement("p");
 runnerUpGameElement.innerHTML = runnerUpGame.name;
 secondGameContainer.appendChild(runnerUpGameElement);
+
+/************************************************************************************
+ * Search Functionality: Filter games based on user input
+ * Skills used: DOM manipulation, filter, event listeners
+ */
+
+// Add search functionality to filter games based on user input
+document.getElementById("search-btn").addEventListener("click", function() {
+    const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+    const filteredGames = GAMES_JSON.filter(game => game.name.toLowerCase().includes(searchTerm));
+
+    // Clear the games container
+    const gamesContainer = document.getElementById("games-container");
+    gamesContainer.innerHTML = "";
+
+    // Add filtered games to the page
+    filteredGames.forEach(game => {
+        const gameCard = document.createElement("div");
+        gameCard.classList.add("game-card");
+        gameCard.innerHTML = `
+            <img class="game-img" src="${game.img}" alt="${game.name}">
+            <h2>${game.name}</h2>
+            <p>${game.description}</p>
+            <p>Backers: ${game.backers.toLocaleString()}</p>
+            <p>Pledged: $${game.pledged.toLocaleString()}</p>
+            <p>Goal: $${game.goal.toLocaleString()}</p>
+        `;
+        gamesContainer.appendChild(gameCard);
+    });
+
+    // If no games match the search term, display a message
+    if (filteredGames.length === 0) {
+        gamesContainer.innerHTML = "<p>No games found matching your search.</p>";
+    }
+});
