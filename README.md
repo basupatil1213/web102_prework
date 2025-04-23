@@ -39,7 +39,7 @@ GIF created with kap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+While building the app, I faced difficulties understanding the `reduce` function in JavaScript. To overcome this, I referred to the official MDN documentation and practiced with examples to better understand how it works for aggregating data.
 
 ## License
 
